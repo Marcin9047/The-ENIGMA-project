@@ -131,7 +131,11 @@ class Enigma:
         else:
             for i in self.cables:
                 if self.cables[i] == char:
+                    char = i
+                    break
                     char == i
+                    char = i
+                    break
         return char
 
     def translate(self):
@@ -150,9 +154,17 @@ class Enigma:
 eng = Enigma(rotors, reverser)
 eng.set_screen_code(["Z", "A", "A"])
 eng.set_shifts([6, 21, 9])
-# eng.set_cables("AB, CD, NG")
+eng.set_cables("AB, CD, NG")
 eng.set_order([3, 1, 2])
 print(eng.translate())
+print(eng.translate())
+
+eng.set_screen_code(["Z", "A", "A"])
+eng.set_shifts([6, 21, 9])
+eng.set_cables("AB, CD, NG")
+eng.set_order([3, 1, 2])
+print(eng.translate())
+
 print(eng.shifts)
 print(eng.screen_code)
 print(eng.translate())
@@ -160,21 +172,12 @@ print(eng.shifts)
 print(eng.screen_code)
 eng.set_screen_code(["Z", "A", "A"])
 eng.set_shifts([6, 21, 9])
-# eng.set_cables("AB, CD, NG")
+eng.set_cables("AB, CD, NG")
 eng.set_order([3, 1, 2])
 print(eng.translate())
 print(eng.shifts)
 print(eng.screen_code)
-print(eng.translate())
-print(eng.shifts)
-print(eng.screen_code)
-eng.set_screen_code(["Z", "A", "A"])
-eng.set_shifts([6, 21, 9])
-# eng.set_cables("AB, CD, NG")
-eng.set_order([3, 1, 2])
-print(eng.translate())
-print(eng.shifts)
-print(eng.screen_code)
+
 
 
 
