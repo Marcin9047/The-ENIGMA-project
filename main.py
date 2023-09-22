@@ -91,9 +91,9 @@ class Enigma:
             char = rotors[char][self.order[num] - 1]
             if num < len(self.screen_code) - 1:
                 char = chr(ord(char) + self.total_diff(num + 1))
-                if ord(char) < 65:
+                while ord(char) < 65:
                     char = chr(ord(char) + 26)
-                elif ord(char) > 90:
+                while ord(char) > 90:
                     char = chr(ord(char) - 26)
         return char
 
@@ -105,9 +105,9 @@ class Enigma:
                     break
             if num > 0:
                 char = chr(ord(char) - self.total_diff(num))
-                if ord(char) < 65:
+                while ord(char) < 65:
                     char = chr(ord(char) + 26)
-                elif ord(char) > 90:
+                while ord(char) > 90:
                     char = chr(ord(char) - 26)
         return char
 
@@ -152,31 +152,31 @@ class Enigma:
 
 
 eng = Enigma(rotors, reverser)
-eng.set_screen_code(["Z", "A", "A"])
+eng.set_screen_code(["C", "X", "E"])
 eng.set_shifts([6, 21, 9])
-eng.set_cables("AB, CD, NG")
+eng.set_cables("AB, CD, NG SQ WO ZI KE YV RH JT")
 eng.set_order([3, 1, 2])
 print(eng.translate())
-print(eng.translate())
+# print(eng.translate())
 
-eng.set_screen_code(["Z", "A", "A"])
-eng.set_shifts([6, 21, 9])
-eng.set_cables("AB, CD, NG")
-eng.set_order([3, 1, 2])
-print(eng.translate())
+# eng.set_screen_code(["Z", "A", "A"])
+# eng.set_shifts([6, 21, 9])
+# eng.set_cables("AB, CD, NG")
+# eng.set_order([3, 1, 2])
+# print(eng.translate())
 
-print(eng.shifts)
-print(eng.screen_code)
-print(eng.translate())
-print(eng.shifts)
-print(eng.screen_code)
-eng.set_screen_code(["Z", "A", "A"])
-eng.set_shifts([6, 21, 9])
-eng.set_cables("AB, CD, NG")
-eng.set_order([3, 1, 2])
-print(eng.translate())
-print(eng.shifts)
-print(eng.screen_code)
+# print(eng.shifts)
+# print(eng.screen_code)
+# print(eng.translate())
+# print(eng.shifts)
+# print(eng.screen_code)
+# eng.set_screen_code(["Z", "A", "A"])
+# eng.set_shifts([6, 21, 9])
+# eng.set_cables("AB, CD, NG")
+# eng.set_order([3, 1, 2])
+# print(eng.translate())
+# print(eng.shifts)
+# print(eng.screen_code)
 
 
 
