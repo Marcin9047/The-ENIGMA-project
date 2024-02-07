@@ -45,11 +45,13 @@ def test_autoshift3():
     eng.auto_shift()
     assert eng.screen_code == ["R", "B", "A"]
 
+
 def test_autoshift4():
     eng = Enigma(rotors, reverser)
     eng.set_screen_code(["Q", "E", "A"])
     eng.auto_shift()
     assert eng.screen_code == ["R", "F", "B"]
+
 
 def test_total_diff():
     eng = Enigma(rotors, reverser)
@@ -74,6 +76,7 @@ def test_back_encrypting():
     assert eng.back_encryption("A") == "K"
     eng.set_order([3, 1, 2])
     assert eng.back_encryption("A") == "W"
+
 
 def test_full_encrypting():
     eng = Enigma(rotors, reverser)

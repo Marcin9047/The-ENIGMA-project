@@ -25,7 +25,7 @@ rotors = {
     "W": ["B", "F", "U"],
     "X": ["R", "V", "S"],
     "Y": ["C", "O", "Q"],
-    "Z": ["J", "E", "O"]
+    "Z": ["J", "E", "O"],
 }
 
 reverser = {
@@ -44,7 +44,34 @@ reverser = {
     "V": "W",
 }
 
-alphabet = {"A":1, "B":2, "C":3, "D":4, "E":5, "F":6, "G":7, "H":8, "I":9, "J":10, "K":11, "L":12, "M":13, "N":14, "O":15, "P":16, "Q":17, "R":18, "S":19, "T":20, "U":21, "V":22, "W":23, "X":24, "Y":25, "Z":26}
+alphabet = {
+    "A": 1,
+    "B": 2,
+    "C": 3,
+    "D": 4,
+    "E": 5,
+    "F": 6,
+    "G": 7,
+    "H": 8,
+    "I": 9,
+    "J": 10,
+    "K": 11,
+    "L": 12,
+    "M": 13,
+    "N": 14,
+    "O": 15,
+    "P": 16,
+    "Q": 17,
+    "R": 18,
+    "S": 19,
+    "T": 20,
+    "U": 21,
+    "V": 22,
+    "W": 23,
+    "X": 24,
+    "Y": 25,
+    "Z": 26,
+}
 
 order = [1, 2, 3]
 
@@ -75,7 +102,11 @@ class Enigma:
 
     def auto_shift(self):
         for ind in range(len(self.screen_code)):
-            if ind == 0 or self.screen_code[ind - 1] == self.rotors["SHIFTS"][self.order[ind - 1] - 1]:
+            if (
+                ind == 0
+                or self.screen_code[ind - 1]
+                == self.rotors["SHIFTS"][self.order[ind - 1] - 1]
+            ):
                 if self.screen_code[ind] != "Z":
                     self.screen_code[ind] = chr(ord(self.screen_code[ind]) + 1)
                 else:
@@ -83,7 +114,9 @@ class Enigma:
 
     def total_diff(self, next):
         shift = self.shifts[next] - self.shifts[next - 1]
-        letters = alphabet[self.screen_code[next]] - alphabet[self.screen_code[next - 1]]
+        letters = (
+            alphabet[self.screen_code[next]] - alphabet[self.screen_code[next - 1]]
+        )
         return shift + letters
 
     def encryption(self, char):
@@ -98,7 +131,7 @@ class Enigma:
         return char
 
     def back_encryption(self, char):
-        for num in range(len(self.screen_code) -1, -1, -1):
+        for num in range(len(self.screen_code) - 1, -1, -1):
             for i in rotors:
                 if i != "SHIFTS" and char == rotors[i][self.order[num] - 1]:
                     char = i
@@ -124,7 +157,7 @@ class Enigma:
         char = self.back_encryption(char)
         char = self.cables_encryption(char)
         return char
-    
+
     def cables_encryption(self, char):
         if char in self.cables:
             char = self.cables[char]
@@ -150,34 +183,9 @@ class Enigma:
         return result
 
 
-
 eng = Enigma(rotors, reverser)
 eng.set_screen_code(["C", "X", "E"])
 eng.set_shifts([6, 21, 9])
 eng.set_cables("AB, CD, NG SQ WO ZI KE YV RH JT")
 eng.set_order([3, 1, 2])
 print(eng.translate())
-# print(eng.translate())
-
-# eng.set_screen_code(["Z", "A", "A"])
-# eng.set_shifts([6, 21, 9])
-# eng.set_cables("AB, CD, NG")
-# eng.set_order([3, 1, 2])
-# print(eng.translate())
-
-# print(eng.shifts)
-# print(eng.screen_code)
-# print(eng.translate())
-# print(eng.shifts)
-# print(eng.screen_code)
-# eng.set_screen_code(["Z", "A", "A"])
-# eng.set_shifts([6, 21, 9])
-# eng.set_cables("AB, CD, NG")
-# eng.set_order([3, 1, 2])
-# print(eng.translate())
-# print(eng.shifts)
-# print(eng.screen_code)
-
-
-
-
